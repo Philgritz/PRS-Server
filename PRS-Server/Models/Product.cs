@@ -34,6 +34,10 @@ namespace PRS_Server.Models {
 
         public virtual Vendor Vendor { get; set; }
 
+        public Product() {
+
+        }
+
 
 
     }
