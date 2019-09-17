@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PRS_Server.Models;
 
 namespace PRS_Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190917150609_AddedProductClass")]
+    partial class AddedProductClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,14 +34,13 @@ namespace PRS_Server.Migrations
                         .IsRequired()
                         .HasMaxLength(30);
 
-                    b.Property<string>("PhotoPath")
+                    b.Property<int>("PhotoPath")
                         .HasMaxLength(255);
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(11,2)");
 
-                    b.Property<string>("Unit")
-                        .IsRequired()
+                    b.Property<int>("Unit")
                         .HasMaxLength(30);
 
                     b.Property<int>("VendorId");

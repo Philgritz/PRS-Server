@@ -12,6 +12,7 @@ namespace PRS_Server.Models {
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }
+        public virtual DbSet<Product>  Products { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> context) : base(context) { }
 
@@ -32,6 +33,16 @@ namespace PRS_Server.Models {
                         .IsUnique();
 
             });
+
+            modelBuilder.Entity<Product>(en => {
+
+                en.HasIndex(p => p.PartNbr)
+                        .HasName("Index-PartNbr")
+                        .IsUnique();
+
+            });
+
+
 
 
 
