@@ -8,6 +8,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace PRS_Server.Models {
     public class User {
 
+        public User() {}
+
         public int Id { get; set; }  //auto designated as pk
         [Required]  
         [StringLength(30)] 
@@ -32,6 +34,7 @@ namespace PRS_Server.Models {
         public bool IsReviewer { get; set; } = false;
         public bool IsAdmin { get; set; } = false;
 
-        public User() { }
+        
+
     }
 }

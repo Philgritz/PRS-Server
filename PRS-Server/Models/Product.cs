@@ -7,7 +7,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace PRS_Server.Models {
+
     public class Product {
+
+        public Product() {}
 
         public int Id { get; set; }
         [Required]
@@ -32,11 +35,10 @@ namespace PRS_Server.Models {
         [Required]
         public int VendorId { get; set; }  //fk to vendor
 
-        public virtual Vendor Vendor { get; set; }
 
-        public Product() {
-
-        }
+        public virtual Vendor Vendor { get; set; }   
+        
+        
 
 
 

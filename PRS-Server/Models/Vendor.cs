@@ -6,7 +6,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PRS_Server.Models {
+
+
     public class Vendor {
+
+        public Vendor() {}
+
 
         public int Id { get; set; }  //automatically made pk
         [Required]
@@ -32,8 +37,7 @@ namespace PRS_Server.Models {
         [StringLength(255)]
         public string Email { get; set; }
 
-        public Vendor() {
-
-        }
+        
+       
     }
 }

@@ -8,6 +8,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace PRS_Server.Models {
     public class Request {
 
+        public Request() {}
+
 
         public int Id { get; set; }
 
@@ -20,7 +22,7 @@ namespace PRS_Server.Models {
         public string Justification { get; set; }  
         
         [StringLength(80)]
-        public string ReasonRejection { get; set; } //nullable
+        public string ReasonRejection { get; set; } //nullable, reasonrejection must be provided when rejected
 
         [Required]
         [StringLength(20)]
@@ -30,19 +32,16 @@ namespace PRS_Server.Models {
         [StringLength(10)]
         public string Status { get; private set; } = "NEW";
 
-        [Required]
         [Column(TypeName = "decimal(11,2)")]
-        public decimal Total { get; private set; } = 0;
+        public decimal Total { get; private set; } = 0; //auto calculated by adding up lines in request
 
-        [Required]
-        public int UserId { get; set; }  //fk to user
+        public int UserId { get; set; }  //fk to user, auto set to logged in user
 
         public virtual User User { get; set; }
 
-        public Request() {
+        //virtual collection of requestline instances in request to hold collection of lines related to this request
 
-        }
-
+        public virtual List<RequestLine> RequestLines { get; set; }
 
 
     }
