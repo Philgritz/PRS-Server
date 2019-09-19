@@ -30,7 +30,7 @@ namespace PRS_Server.Models {
 
         [Required]
         [StringLength(10)]
-        public string Status { get; private set; } = "NEW";
+        public string Status { get; set; } = "NEW";
 
         [Column(TypeName = "decimal(11,2)")]
         public decimal Total { get; private set; } = 0; //auto calculated by adding up lines in request

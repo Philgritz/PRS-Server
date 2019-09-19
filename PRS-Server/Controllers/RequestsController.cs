@@ -71,6 +71,48 @@ namespace PRS_Server.Controllers
             return NoContent();
         }
 
+        // PUT: api/Requests/5  (set Request Status to "Review" from id)
+        [HttpPut("review/{id}")]
+        public async Task<IActionResult> PutStatusReview(int id) {
+            var request = await _context.Requests.FindAsync(id);
+            if (request == null) {
+                return NotFound();
+            }
+            request.Status = "REVIEW";
+
+            _context.SaveChanges();
+            return NoContent();
+        }
+
+        // PUT: api/Requests/5  (set Request Status to "Approved" from id)
+        [HttpPut("approved/{id}")]
+        public async Task<IActionResult> PutStatusApproved(int id) {
+            var request = await _context.Requests.FindAsync(id);
+            if (request == null) {
+                return NotFound();
+            }
+            request.Status = "APPROVED";
+
+            _context.SaveChanges();
+            return NoContent();
+        }
+
+        // PUT: api/Requests/5  (set Request Status to "Rejected" from id)
+        [HttpPut("rejected/{id}")]
+        public async Task<IActionResult> PutStatusRejected(int id) {
+            var request = await _context.Requests.FindAsync(id);
+            if (request == null) {
+                return NotFound();
+            }
+            request.Status = "REJECTED";
+
+            _context.SaveChanges();
+            return NoContent();
+        }
+
+
+
+
         // POST: api/Requests
         [HttpPost]
         public async Task<ActionResult<Request>> PostRequest(Request request)
@@ -80,6 +122,8 @@ namespace PRS_Server.Controllers
 
             return CreatedAtAction("GetRequest", new { id = request.Id }, request);
         }
+
+
 
         // DELETE: api/Requests/5
         [HttpDelete("{id}")]
