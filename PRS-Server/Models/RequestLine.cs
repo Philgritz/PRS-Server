@@ -17,7 +17,7 @@ namespace PRS_Server.Models {
         public int ProductId { get; set; }
         
         [Range(0,int.MaxValue)]
-        public int Quantity { get; set; } = 1;  //must be >= 0
+        public int Quantity { get; set; } = 1; 
 
 
         
