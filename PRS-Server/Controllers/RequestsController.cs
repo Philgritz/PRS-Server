@@ -20,6 +20,11 @@ namespace PRS_Server.Controllers
             _context = context;
         }
 
+
+
+
+
+
         // GET: api/Requests
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Request>>> GetRequests()
@@ -119,6 +124,10 @@ namespace PRS_Server.Controllers
         {
             _context.Requests.Add(request);
             await _context.SaveChangesAsync();
+
+            // <50 auto set to APPROVED, >50 set to REVIEW
+            request.Status = (request.Total <= 50) ? "APPROVED" : "REVIEW"; //ternary operator
+            _context.SaveChanges();
 
             return CreatedAtAction("GetRequest", new { id = request.Id }, request);
         }

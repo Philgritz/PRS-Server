@@ -25,5 +25,9 @@ namespace PRS_Server.Models {
 
         [JsonIgnore]     
         public virtual Request Request { get; set; }
+
+
+
+
     }
 }

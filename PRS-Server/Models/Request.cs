@@ -8,19 +8,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace PRS_Server.Models {
     public class Request {
 
-        public Request() {}
+        public Request() { }
 
 
         public int Id { get; set; }
 
         [Required]
         [StringLength(80)]
-        public string Description { get; set; } 
+        public string Description { get; set; }
 
         [Required]
         [StringLength(80)]
-        public string Justification { get; set; }  
-        
+        public string Justification { get; set; }
+
         [StringLength(80)]
         public string ReasonRejection { get; set; } //nullable, reasonrejection must be provided when rejected
 
@@ -32,8 +32,12 @@ namespace PRS_Server.Models {
         [StringLength(10)]
         public string Status { get; set; } = "NEW";
 
-        [Column(TypeName = "decimal(11,2)")]
-        public decimal Total { get; private set; } = 0; //auto calculated by adding up lines in request
+        [Column(TypeName = "decimal(11,2)")]  //auto calculated by adding up lines in request
+        public decimal Total { get; set; } = 0; 
+     
+
+          
+
 
         public int UserId { get; set; }  //fk to user, auto set to logged in user
 
@@ -45,4 +49,9 @@ namespace PRS_Server.Models {
 
 
     }
+            
+
+          
+
+        
 }

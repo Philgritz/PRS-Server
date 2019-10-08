@@ -20,6 +20,18 @@ namespace PRS_Server.Controllers
             _context = context;
         }
 
+
+        //change request total when requestline is inserted/updated/deleted.
+        private void ReCalc(int requestId) {
+            var request = _context.Requests.Find(requestId);
+            if (request == null) {
+                throw new Exception();
+            }
+            request.Total = _context.RequestLines.Where(l => l.RequestId == requestId).Sum(l => l.Product.Price * l.Quantity);
+            _context.SaveChanges();
+        }
+
+
         // GET: api/RequestLines
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RequestLine>>> GetRequestLines()
@@ -77,6 +89,13 @@ namespace PRS_Server.Controllers
         {
             _context.RequestLines.Add(requestLine);
             await _context.SaveChangesAsync();
+
+
+            ReCalc(requestLine.RequestId);
+
+
+            
+            
 
             return CreatedAtAction("GetRequestLine", new { id = requestLine.Id }, requestLine);
         }
