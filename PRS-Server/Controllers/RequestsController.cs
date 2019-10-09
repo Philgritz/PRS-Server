@@ -111,6 +111,13 @@ namespace PRS_Server.Controllers
             }
             request.Status = "REJECTED";
 
+
+            //REASON REJECTION CANNOT BE NULL
+            if (request.ReasonRejection == null && request.Status == "REJECTED") {
+                throw new Exception();
+            }
+
+
             _context.SaveChanges();
             return NoContent();
         }
@@ -128,6 +135,8 @@ namespace PRS_Server.Controllers
             // <50 auto set to APPROVED, >50 set to REVIEW
             request.Status = (request.Total <= 50) ? "APPROVED" : "REVIEW"; //ternary operator
             _context.SaveChanges();
+
+
 
             return CreatedAtAction("GetRequest", new { id = request.Id }, request);
         }
