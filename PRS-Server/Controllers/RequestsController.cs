@@ -21,8 +21,7 @@ namespace PRS_Server.Controllers
         }
 
 
-
-
+        //[HttpGet] get where status is REVIEW && User.Id !== User.Id
 
 
         // GET: api/Requests
@@ -45,6 +44,20 @@ namespace PRS_Server.Controllers
 
             return request;
         }
+
+        //GET: api/Requests/userid/status
+        //[HttpGet("{userid}/{status}")]
+        //public async Task<ActionResult<Request>> RequestStatusUserId(int userId, string status) {
+        //    var request = await _context.Requests
+        //        .SingleOrDefaultAsync(r => r.UserId.Equals(userId) && r.Status.Equals(status));
+
+        //    if (request == null) {
+        //        return NotFound();
+        //    }
+
+        //    return request;
+
+        //}
 
         // PUT: api/Requests/5
         [HttpPut("{id}")]
@@ -101,6 +114,15 @@ namespace PRS_Server.Controllers
             _context.SaveChanges();
             return NoContent();
         }
+        //NEW REQUEST REJECT
+        [HttpPut("reject/id")]
+        public async Task<IActionResult> PutStatusReject(int id, Request request) {
+            request.Status = "REJECTED";
+            return await PutRequest(id, request);
+        }
+
+
+
 
         // PUT: api/Requests/5  (set Request Status to "Rejected" from id)
         [HttpPut("rejected/{id}")]

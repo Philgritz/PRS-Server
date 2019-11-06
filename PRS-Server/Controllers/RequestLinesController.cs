@@ -28,6 +28,9 @@ namespace PRS_Server.Controllers
                 throw new Exception();
             }
             request.Total = _context.RequestLines.Where(l => l.RequestId == requestId).Sum(l => l.Product.Price * l.Quantity);
+
+            request.Status = (request.Total <= 50) ? "APPROVED" : "REVIEW"; //ternary operator
+
             _context.SaveChanges();
         }
 
